@@ -1,9 +1,9 @@
-run("mkdir /usr/lib/motd")
+run("mkdir -p /usr/lib/motd")
 run("cp /tmp/motd/main.py /usr/lib/motd/main.py")
 if os.path.exists(file("/etc/motd")):
     pass
 else:
-    run("mkdir /etc/motd")
+    run("mkdir -p /etc/motd")
 
 if os.path.exists(file("/etc/motd/motd")):
     pass
