@@ -6,7 +6,7 @@ ifndef VERSION
 	@read line; if [ $$line = "n" ]; then echo aborting; exit 1 ; fi
 endif
 
-tarball: install.py install.py motd users main.py
+tarball: install.py motd users main.py
 	tar -cvf ${VERSION}.tar.xz $?
 	$(info Tarball)
 
