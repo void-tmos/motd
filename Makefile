@@ -1,4 +1,4 @@
-all: check tarball hash clean
+all: check tarball hash clean move
 
 check:
 ifndef VERSION
@@ -6,7 +6,7 @@ ifndef VERSION
 	@read line; if [ $$line = "n" ]; then echo aborting; exit 1 ; fi
 endif
 
-tarball: install.py motd users main.py
+tarball: install.py main.py motd users
 	tar -cvf ${VERSION}.tar.xz $?
 	$(info Tarball)
 
@@ -15,9 +15,9 @@ hash: ${VERSION}.tar.xz
 	head -c 32 ${VERSION}.tar.xz.md5b > ${VERSION}.tar.xz.md5
 	$(info Hash)
 
-install: ${VERSION}.tar.xz ${VERSION}.tar.xz.md5
-	cp ${VERSION}.tar.xz /data/web/nebps/motd
-	cp ${VERSION}.tar.xz.md5 /data/web/nebps/motd
+move:
+	mv ${VERSION}.tar.xz versions/
+	mv ${VERSION}.tar.xz.md5 versions/
 
 clean:
 	$(info Cleaning)
